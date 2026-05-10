@@ -1,775 +1,314 @@
 /**
- * @name Gruvbox Dark
- * @description Gruvbox Dark for Discord (new UI update)
+ * @name gruvbox-material
+ * @description a dark, customizable discord theme.
  * @author NachoOsella
- * @website https://github.com/NachoOsella/discord-gruvbox
+ * @version 1.1.0
+ * @source https://github.com/NachoOsella/discord-gruvbox
 */
 
-* {
-    /* Gruvbox Material dark hard palette from sainnhe/gruvbox-material. */
-    --gruv-dark-bg-dim: 14, 16, 17; /* Extra dark, close to the terminal */
-    --gruv-dark-bg-hard: 20, 22, 23; /* #141617 */
-    --gruv-dark-bg: 29, 32, 33; /* #1d2021 */
-    --gruv-dark-bg-alt: 25, 28, 29; /* Dark sidebar/header gray */
-    --gruv-dark-bg-soft: 40, 40, 40; /* #282828 */
-    --gruv-dark-bg1: 35, 37, 37; /* Subtle selected surface */
-    --gruv-dark-bg2: 50, 48, 47; /* #32302f */
-    --gruv-dark-bg3: 60, 56, 54; /* #3c3836 */
-    --gruv-dark-bg4: 80, 73, 69; /* #504945 */
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
-    --gruv-dark-fg-hard: 221, 199, 161; /* #ddc7a1 */
-    --gruv-dark-fg: 212, 190, 152; /* #d4be98 */
-    --gruv-dark-fg1: 199, 177, 141;
-    --gruv-dark-fg2: 176, 157, 126;
-    --gruv-dark-fg3: 146, 131, 116; /* #928374 */
+body {
+    /* font, change to '' for default discord font */
+    --font: 'JetBrains Mono'; /* change to '' for default discord font */
+    --code-font: 'JetBrains Mono'; /* change to '' for default discord font */
+    font-weight: 400 /* normal text font weight. DOES NOT AFFECT BOLD TEXT */;
 
-    --gruv-dark-purple-dark: 179, 111, 135;
-    --gruv-dark-purple-light: 211, 134, 155; /* #d3869b */
+    /* sizes */
+    --gap: 10px; /* spacing between panels */
+    --divider-thickness: 3px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 1px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
 
-    --gruv-dark-yellow-dark: 216, 166, 87; /* #d8a657 */
-    --gruv-dark-yellow-light: 230, 181, 98;
+    /* boxy geometry, reduce Discord's default rounded corners */
+    --radius-xs: 0px;
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+    --radius-xl: 0px;
+    --custom-app-top-bar-height: 28px;
 
-    --gruv-dark-red-dark: 234, 105, 98; /* #ea6962 */
-    --gruv-dark-red-light: 239, 124, 116;
+    /* animation/transition options */
+    --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
+    --list-item-transition: 0.2s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
 
-    --gruv-dark-orange-dark: 231, 138, 78; /* #e78a4e */
-    --gruv-dark-orange-light: 241, 159, 96;
+    /* top bar options */
+    --top-bar-height: var(
+        --gap
+    ); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+    --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+    --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+    --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
 
-    --gruv-dark-blue-dark: 125, 174, 163; /* #7daea3 */
-    --gruv-dark-blue-light: 137, 180, 176;
+    /* window controls */
+    --custom-window-controls: on; /* off: default window controls, on: custom window controls */
+    --window-control-size: 14px; /* size of custom window controls */
 
-    --gruv-dark-green-dark: 169, 182, 101; /* #a9b665 */
-    --gruv-dark-green-light: 185, 197, 115;
+    /* dms button options */
+    --custom-dms-icon: custom; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+    --dms-icon-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27 27' width='24' height='24'%3E%3Cpath fill='currentColor' d='M0 0h7v1H6v1H5v1H4v1H3v1H2v1h5v1H0V6h1V5h1V4h1V3h1V2h1V1H0m13 2h5v1h-1v1h-1v1h-1v1h3v1h-5V7h1V6h1V5h1V4h-3m8 5h1v5h1v-1h1v1h-1v1h1v-1h1v1h-1v3h-1v1h-2v1h-1v1h1v-1h2v-1h1v2h-1v1h-2v1h-1v-1h-1v1h-6v-1h-1v-1h-1v-2h1v1h2v1h3v1h1v-1h-1v-1h-3v-1h-4v-4h1v-2h1v-1h1v-1h1v2h1v1h1v-1h1v1h-1v1h2v-2h1v-2h1v-1h1M8 14h2v1H9v4h1v2h1v1h1v1h1v1h4v1h-6v-1H5v-1H4v-5h1v-1h1v-2h2m17 3h1v3h-1v1h-1v1h-1v2h-2v-2h2v-1h1v-1h1m1 0h1v3h-1v1h-2v-1h1v-1h1'%3E%3C/path%3E%3C/svg%3E"); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
+    --dms-icon-color-before: var(--icon-subtle); /* normal icon color */
+    --dms-icon-color-after: var(
+        --white
+    ); /* icon color when button is hovered/selected */
+    --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+    --dms-background-image-url: url(''); /* url of the background image */
+    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+    --dms-background-color: linear-gradient(
+        70deg,
+        var(--blue-2),
+        var(--purple-2),
+        var(--red-2)
+    ); /* fixed color/gradient (css background property) */
 
-    --gruv-dark-aqua-dark: 137, 180, 130; /* #89b482 */
-    --gruv-dark-aqua-light: 151, 195, 143;
+    /* background image options */
+    --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
+    --background-image-url: url(''); /* url of the background image */
 
-    --gruv-dark-gray-dark: 146, 131, 116; /* #928374 */
-    --gruv-dark-gray-light: 176, 157, 126;
+    /* transparency/blur options */
+    /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+    --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: off; /* off: no changes, on: blur the background of panels */
+    --blur-amount: 12px; /* amount of blur */
+    --bg-floating: var(
+        --bg-3
+    ); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
 
-    /* ============================================================== */
+    /* chatbar options */
+    --custom-chatbar: off; /* off: default chatbar, separated: chatbar separated from chat */
+    --chatbar-height: 47px; /* height of the chatbar (56px by default, 47px to align with user panel, 56px recommended for separated) */
 
-    --gruv-dark-text-hard: var(--gruv-dark-fg-hard);
-    --gruv-dark-text-primary: var(--gruv-dark-fg);
-    --gruv-dark-text-secondary: var(--gruv-dark-fg1);
-    --gruv-dark-text-tertiary: var(--gruv-dark-fg2);
-    --gruv-dark-text-muted: var(--gruv-dark-fg3);
-    --gruv-dark-text-danger: var(--gruv-dark-red-light);
-    --gruv-dark-text-inverted-hard: var(--gruv-dark-bg-hard);
-    --gruv-dark-text-inverted: var(--gruv-dark-bg-hard);
-
-    --gruv-dark-background-positive: var(--gruv-dark-green-dark);
-
-    /* Aqua is the main accent; green and pink carry success/premium highlights. */
-    --gruv-dark-accent: var(--gruv-dark-aqua-light);
-    --gruv-dark-accent-hover: var(--gruv-dark-green-light);
-
-    --gruv-dark-icon-color: var(--gruv-dark-fg2);
-    --gruv-dark-icon-color-hover: var(--gruv-dark-fg);
-    --gruv-dark-icon-color-hover-harder: var(--gruv-dark-fg-hard);
-    --gruv-dark-icon-color-muted: var(--gruv-dark-fg3);
-
-    --gruv-dark-link-color: var(--gruv-dark-aqua-light);
-
-    --gruv-dark-border-default: var(--gruv-dark-bg2);
-    --gruv-dark-border-hover: var(--gruv-dark-bg3);
-
-    --gruv-dark-button-color-default: var(--gruv-dark-accent);
-    --gruv-dark-button-color-hover: rgba(
-        var(--gruv-dark-button-color-default),
-        0.7
-    );
-    --gruv-dark-button-text-default: var(--gruv-dark-bg);
-    --gruv-dark-button-text-dark: var(--gruv-dark-text-primary);
-    --gruv-dark-button-text-dark-muted: var(--gruv-dark-text-muted);
-
-    --gruv-dark-button-alt-default: var(--gruv-dark-bg-soft);
-    --gruv-dark-button-alt-hover: var(--gruv-dark-bg);
-
-    --gruv-dark-button-positive-default: var(--gruv-dark-green-dark);
-    --gruv-dark-button-positive-hover: rgba(var(--gruv-dark-green-dark), 0.8);
-
-    --gruv-dark-input-box-background: var(--gruv-dark-bg-soft);
-
-    --gruv-dark-scrollbar-color: var(--gruv-dark-bg3);
-    --gruv-dark-scrollbar-background: transparent;
-
-    --gruv-dark-selected-tab: var(--gruv-dark-bg1);
-
-    --gruv-dark-status-online: var(--gruv-dark-green-dark);
-    --gruv-dark-status-offline: var(--gruv-dark-text-muted);
-    --gruv-dark-status-idle: rgba(var(--gruv-dark-accent), 0.8);
-    --gruv-dark-status-dnd: var(--gruv-dark-red-dark);
-
-    --vc-spotify-green: rgba(var(--gruv-dark-green-dark));
-    --vc-spotify-green-90: rgba(var(--gruv-dark-green-dark), 0.2);
-    --vc-spotify-green-80: rgba(var(--gruv-dark-green-dark), 0.3);
+    /* other options */
+    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
 }
 
-.visual-refresh.theme-dark,
-.visual-refresh .theme-dark,
-[class*=vc-membercount-total], /* vesktop plugin */
-.visual-refresh,
-.theme-dark {
-    --__header-bar-background: rgba(var(--gruv-dark-bg-hard));
-    --autocomplete-bg: rgba(var(--gruv-dark-bg));
-
-    --background-primary: rgba(var(--gruv-dark-bg)); /* #1d2021 */
-    --background-secondary: rgba(var(--gruv-dark-bg-alt));
-    --background-secondary-alt: rgba(var(--gruv-dark-bg-soft));
-    --background-tertiary: rgba(var(--gruv-dark-bg-hard)); /* #141617 */
-
-    --background-base-lower: rgba(var(--gruv-dark-bg));
-    --background-base-low: rgba(var(--gruv-dark-bg));
-    --background-base-lowest: rgba(var(--gruv-dark-bg-hard));
-    --background-floating: rgba(var(--gruv-dark-bg-hard));
-
-    --background-surface-high: rgba(var(--gruv-dark-bg1));
-    --background-surface-higher: rgba(var(--gruv-dark-bg-soft));
-    --background-surface-highest: rgba(var(--gruv-dark-bg2));
-
-    --background-feedback-critical: rgba(var(--gruv-dark-red-dark), 0.08);
-    --background-feedback-positive: rgba(var(--gruv-dark-green-dark), 0.08);
-
-    --background-modifier-accent: rgba(var(--gruv-dark-border-default));
-    --background-modifier-selected: rgba(var(--gruv-dark-selected-tab));
-
-    --background-mentioned: rgba(var(--gruv-dark-accent), 0.1);
-    --background-mentioned-hover: rgba(var(--gruv-dark-accent), 0.15);
-
-    --background-message-automod: rgba(var(--gruv-dark-accent), 0.1);
-    --background-message-automod-hover: rgba(var(--gruv-dark-accent), 0.15);
-
-    --background-accent: rgba(var(--gruv-dark-bg1));
-
-    --bg-base-primary: rgba(var(--gruv-dark-bg));
-    --bg-base-secondary: rgba(var(--gruv-dark-bg-alt));
-    --bg-base-tertiary: rgba(var(--gruv-dark-bg-hard));
-
-    --bg-surface-overlay: rgba(var(--gruv-dark-bg-hard));
-
-    --card-primary-bg: rgba(var(--gruv-dark-bg-hard));
-
-    --bg-brand: rgba(var(--gruv-dark-accent), 0.8);
-
-    --bg-mod-faint: rgba(var(--gruv-dark-bg-soft));
-    --bg-mod-strong: rgba(var(--gruv-dark-bg2));
-    --bg-mod-subtle: rgba(var(--gruv-dark-bg1));
-
-    --border-normal: rgba(var(--gruv-dark-border-default));
-    --border-strong: rgba(var(--gruv-dark-border-default));
-    --border-faint: rgba(var(--gruv-dark-border-default));
-    --border-subtle: rgba(var(--gruv-dark-border-default));
-
-    --background-message-hover: rgba(var(--gruv-dark-bg1));
-
-    --text-primary: rgba(var(--gruv-dark-fg-hard)); /* #fbf1c7  */
-    --text-normal: rgba(var(--gruv-dark-fg)); /* #ebdbb2  */
-    --text-default: rgba(var(--gruv-dark-fg)); /* #ebdbb2  */
-    --text-secondary: rgba(var(--gruv-dark-fg1)); /* #d5c4a1 */
-    --text-tertiary: rgba(var(--gruv-dark-fg2)); /* #bdae93 */
-    --text-positive: rgba(var(--gruv-dark-green-dark));
-
-    --chat-text-muted: var(--text-tertiary);
-    --embed-title: rgba(var(--gruv-dark-text-hard));
-
-    --text-link: rgba(var(--gruv-dark-link-color));
-    --text-muted: rgba(var(--gruv-dark-text-muted));
-    --text-brand: rgba(var(--gruv-dark-accent));
-    --text-muted-on-default: rgba(var(--gruv-dark-text-muted));
-
-    --text-feedback-positive: rgba(var(--gruv-dark-green-dark));
-
-    --text-code-comment: rgba(var(--gruv-dark-gray-light));
-    --text-code-default: rgba(var(--gruv-dark-aqua-light));
-    --text-code-keyword: rgba(var(--gruv-dark-purple-light));
-    --text-code-variable: rgba(var(--gruv-dark-green-light));
-    --text-code-builtin: rgba(var(--gruv-dark-purple-light));
-    --text-code-string: rgba(var(--gruv-dark-green-light));
-
-    --header-primary: rgba(var(--gruv-dark-text-primary));
-    --header-secondary: rgba(var(--gruv-dark-text-tertiary));
-    --header-muted: rgba(var(--gruv-dark-text-muted));
-
-    --checkbox-border-default: rgba(var(--gruv-dark-border-default));
-    --checkbox-border-checked: rgba(var(--gruv-dark-border-default));
-    --checkbox-background-default: rgba(var(--gruv-dark-bg-soft));
-    --checkbox-background-checked: rgba(var(--gruv-dark-background-positive));
-
-    --channel-icon: rgba(var(--gruv-dark-icon-color));
-    --channels-default: rgba(var(--gruv-dark-fg3));
-
-    --custom-notice-background: rgba(var(--gruv-dark-green-dark));
-    --custom-notice-text: rgba(var(--gruv-dark-text-hard));
-
-    --notice-background-positive: rgba(var(--gruv-dark-green-dark));
-    --notice-background-warning: rgba(var(--gruv-dark-yellow-dark), 0.8);
-    --notice-background-critical: rgba(var(--gruv-dark-red-dark));
-
-    --notice-text-positive: rgba(var(--gruv-dark-text-inverted-hard));
-
-    --link-color: rgba(var(--gruv-dark-blue-dark));
-
-    --icon-primary: rgba(var(--gruv-dark-icon-color));
-    --icon-secondary: rgba(var(--gruv-dark-icon-color));
-    --icon-tertiary: rgba(var(--gruv-dark-icon-color));
-    --icon-default: rgba(var(--gruv-dark-icon-color));
-    --icon-muted: rgba(var(--gruv-dark-icon-color-muted));
-
-    --input-background: rgba(var(--gruv-dark-input-box-background));
-    --input-border: rgba(var(--gruv-dark-border-default));
-    --input-placeholder-text: rgba(var(--gruv-dark-text-tertiary));
-
-    --modal-background: rgba(var(--gruv-dark-bg-hard));
-    --modal-footer-background: rgba(var(--gruv-dark-bg));
-
-    --mention-foreground: rgba(var(--gruv-dark-fg-hard));
-    --mention-background: rgba(var(--gruv-dark-bg2));
-
-    --scrollbar-auto-thumb: rgba(var(--gruv-dark-scrollbar-color));
-    --scrollbar-auto-track: rgba(var(--gruv-dark-scrollbar-background));
-    --scrollbar-thin-thumb: rgba(var(--gruv-dark-scrollbar-color));
-    --scrollbar-auto-scrollbar-color-thumb: rgba(
-        var(--gruv-dark-scrollbar-color)
-    );
-    --scrollbar-auto-scrollbar-color-track: rgba(
-        var(--gruv-dark-scrollbar-color)
-    );
-
-    --button-filled-brand-text: rgba(var(--gruv-dark-button-text-default));
-    --button-filled-brand-border: rgba(var(--gruv-dark-button-color-default));
-    --button-filled-brand-background: rgba(
-        var(--gruv-dark-button-color-default)
-    );
-    --button-filled-brand-background-active: rgba(
-        var(--gruv-dark-button-color-default)
-    );
-    --button-filled-brand-background-hover: var(--gruv-dark-button-color-hover);
-
-    --button-danger-background: rgba(var(--gruv-dark-red-dark));
-    --button-danger-background-active: rgba(var(--gruv-dark-red-light));
-    --button-danger-background-disabled: rgba(var(--gruv-dark-red-dark), 0.8);
-    --button-danger-background-hover: rgba(var(--gruv-dark-red-dark), 0.7);
-    --button-danger-border: rgba(var(--gruv-dark-red-dark));
-
-    --button-outline-danger-background: rgba(
-        var(--gruv-dark-button-alt-default)
-    );
-    --button-outline-danger-background-hover: rgba(
-        var(--gruv-dark-button-alt-hover)
-    );
-    --button-outline-danger-border: rgba(var(--gruv-dark-border-default));
-    --button-outline-danger-border-hover: rgba(var(--gruv-dark-border-default));
-    --button-outline-danger-text: rgba(var(--gruv-dark-button-text-dark-muted));
-    --button-outline-danger-text-hover: rgba(var(--gruv-dark-text-danger));
-
-    --button-outline-positive-text: rgba(var(--gruv-dark-text-primary));
-
-    --button-positive-background: rgba(
-        var(--gruv-dark-button-positive-default)
-    );
-    --button-positive-background-hover: var(--gruv-dark-button-positive-hover);
-    --button-positive-background-active: rgba(
-        var(--gruv-dark-button-positive-default)
-    );
-    --button-positive-background-disabled: rgba(var(--gruv-dark-green-dark));
-    --button-positive-border: rgba(var(--gruv-dark-button-positive-default));
-
-    --button-secondary-background: rgba(var(--gruv-dark-bg-soft));
-    --button-secondary-background-hover: rgba(var(--gruv-dark-bg));
-    --button-secondary-text: rgba(var(--gruv-dark-button-text-dark-muted));
-
-    --button-transparent-background: rgba(var(--gruv-dark-button-alt-default));
-    --button-transparent-background-hover: rgba(
-        var(--gruv-dark-button-alt-hover)
-    );
-    --button-transparent-text: rgba(var(--gruv-dark-button-text-dark));
-
-    --primary-630: rgba(var(--gruv-dark-button-alt-default));
-    --primary-700: rgba(var(--gruv-dark-button-alt-hover));
-
-    --background-code: rgba(var(--gruv-dark-bg-hard));
-
-    --status-online: rgba(var(--gruv-dark-status-online));
-    --status-offline: rgba(var(--gruv-dark-status-offline));
-    --status-idle: var(--gruv-dark-status-idle);
-    --status-dnd: rgba(var(--gruv-dark-status-dnd));
-
-    --status-positive: rgba(var(--gruv-dark-green-dark));
-    --status-positive-background: rgba(var(--gruv-dark-green-dark));
-    --status-positive-text: rgba(var(--gruv-dark-text-inverted-hard));
-
-    --status-danger: rgba(var(--gruv-dark-red-dark));
-    --status-danger-background: rgba(var(--gruv-dark-red-dark));
-    --status-danger-text: rgba(var(--gruv-dark-text-primary));
-
-    --status-warning: rgba(var(--gruv-dark-orange-dark));
-    --status-warning-background: rgba(var(--gruv-dark-orange-dark));
-    --status-warning-text: rgba(var(--gruv-dark-text-inverted-hard));
-
-    --status-speaking: rgba(var(--gruv-dark-green-light));
-
-    --info-danger-background: rgba(var(--gruv-dark-red-dark), 0.08);
-    --info-danger-text: rgba(var(--gruv-dark-red-light));
-
-    --info-help-foreground: rgba(var(--gruv-dark-blue-light));
-    --info-help-background: rgba(var(--gruv-dark-blue-dark), 0.1);
-
-    --info-positive-background: rgba(var(--gruv-dark-green-dark), 0.08);
-    --info-positive-text: rgba(var(--gruv-dark-green-light));
-
-    --info-warning-background: rgba(var(--gruv-dark-orange-dark), 0.08);
-    --info-warning-text: rgba(var(--gruv-dark-text-primary));
-
-    --background-mod-normal: rgba(var(--gruv-dark-selected-tab));
-    --background-mod-strong: rgba(var(--gruv-dark-bg2));
-    --background-mod-subtle: rgba(var(--gruv-dark-bg-soft));
-
-    --interactive-normal: rgba(var(--gruv-dark-icon-color));
-    --interactive-hover: rgba(var(--gruv-dark-icon-color-hover-harder));
-    --interactive-active: rgba(var(--gruv-dark-icon-color-hover-harder));
-    --interactive-muted: rgba(var(--gruv-dark-bg3));
-
-    --message-reacted-text: rgba(var(--gruv-dark-text-hard));
-    --message-reacted-background: rgba(var(--gruv-dark-accent), 0.1);
-
-    --background-message-highlight: rgba(var(--gruv-dark-accent), 0.1);
-    --background-message-highlight-hover: rgba(var(--gruv-dark-accent), 0.15);
-
-    --spoiler-hidden-background: rgba(var(--gruv-dark-bg2));
-    --spoiler-hidden-background-hover: rgba(var(--gruv-dark-bg3));
-
-    --chat-background-default: rgba(var(--gruv-dark-bg));
-    --premium-nitro-pink-text: rgba(var(--gruv-dark-purple-light));
-    --guild-boosting-pink: rgba(var(--gruv-dark-purple-light));
-    --spine-default: rgba(var(--gruv-dark-bg4));
-    --app-border-frame: rgba(var(--gruv-dark-border-default));
-    --twitch: rgba(var(--gruv-dark-purple-dark));
-    --opacity-blurple-12: rgba(var(--gruv-dark-bg));
-
-    --custom-store-colors-premium-gradient: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-    --custom-premium-colors-premium-gradient-tier-0: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-    --custom-premium-colors-premium-gradient-tier-1: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-    --custom-premium-colors-premium-gradient-tier-2: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-    --custom-premium-colors-premium-gradient-tier-2-transparent: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark), 0.3),
-        rgba(var(--gruv-dark-purple-light), 0.3)
-    );
-    --custom-premium-colors-premium-gradient-tier-2-diagonal: linear-gradient(
-        45deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-    --custom-premium-colors-premium-gradient-tier-2-tri-color: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light)),
-        rgba(var(--gruv-dark-purple-dark))
-    );
-    --custom-premium-colors-premium-gradient-tier-2-tri-color-reverse: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light)),
-        rgba(var(--gruv-dark-purple-dark))
-    );
-    --custom-premium-colors-premium-gradient-tier-2-tri-color-vertical: linear-gradient(
-        0deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light)),
-        rgba(var(--gruv-dark-purple-dark))
-    );
-    --custom-premium-colors-premium-gradient-tier-2-old: linear-gradient(
-        90deg,
-        rgba(var(--gruv-dark-purple-dark)),
-        rgba(var(--gruv-dark-purple-light))
-    );
-
-    --premium-nitro-pink-dark: rgba(var(--gruv-dark-purple-dark));
-    --premium-nitro-pink-light: rgba(var(--gruv-dark-purple-light));
-    --premium-perk-blue: rgba(var(--gruv-dark-blue-dark));
-    --premium-perk-blue-alt: rgba(var(--gruv-dark-blue-dark));
-    --premium-perk-dark-blue: rgba(var(--gruv-dark-blue-dark));
-
-    --brand-260: rgba(var(--gruv-dark-accent-hover), 0.8);
-    --brand-360: rgba(var(--gruv-dark-accent));
-    --brand-500: rgba(var(--gruv-dark-accent-hover), 0.8);
-    --brand-05: rgba(var(--gruv-dark-accent-hover), 0.2);
-    --white-500: rgba(var(--gruv-dark-text-hard));
-    --blurple-50: rgba(var(--gruv-dark-accent));
-    --green-300: rgba(var(--gruv-dark-green-dark));
-    --green-360: rgba(var(--gruv-dark-green-dark));
-    --color-total: rgba(var(--gruv-dark-text-muted));
-    --primary-300: rgba(var(--gruv-dark-text-hard));
-    --primary-500: rgba(var(--gruv-dark-bg1));
-    --white: rgba(var(--gruv-dark-text-hard));
-
-    --badge-brand-text: rgba(var(--gruv-dark-text-inverted));
-    --badge-brand-bg: rgba(var(--gruv-dark-accent-hover), 0.8);
-
-    --redesign-button-positive-background: rgba(var(--gruv-dark-green-dark));
-    --redesign-button-positive-pressed-background: rgba(
-        var(--gruv-dark-green-dark),
-        0.8
-    );
-    --redesign-button-positive-text: rgba(var(--gruv-dark-text-hard));
-    --redesign-button-overlay-alpha-text: rgba(var(--gruv-dark-text-hard));
-    --redesign-button-overlay-alpha-background: rgba(0, 0, 0, 0.3);
-
-    --user-profile-overlay-background: rgba(var(--gruv-dark-bg));
-
-    /* hasty fix for new update*/
-    --text-strong: var(--text-primary);
-    --icon-strong: var(--text-strong);
-    --interactive-text-hover: var(--text-strong);
-    --interactive-text-active: var(--text-strong);
-    --interactive-text-default: var(--text-normal);
-    --icon-subtle: var(--text-strong);
-    --mobile-text-heading-primary: var(--text-strong);
-    --control-secondary-text-default: var(--text-secondary);
-    --control-secondary-text-hover: var(--text-secondary);
-    --text-subtle: var(--text-muted);
+/* Boxy shape overrides for surfaces, inputs, buttons, cards, and media. */
+:where(
+    button,
+    input,
+    textarea,
+    select,
+    [role='button'],
+    [class*='button'],
+    [class*='input'],
+    [class*='searchBar'],
+    [class*='channelTextArea'],
+    [class*='container'],
+    [class*='panel'],
+    [class*='card'],
+    [class*='item'],
+    [class*='popout'],
+    [class*='menu'],
+    [class*='modal'],
+    [class*='tooltip']
+) {
+    border-radius: var(--radius-md) !important;
 }
 
-.visual-refresh .textBadge__2b1f5 {
-    color: rgb(var(--gruv-dark-text-inverted)) !important;
+/* Keep avatars readable but make them squarer to match the boxy layout. */
+:where(
+    img[class*='avatar'],
+    [class*='avatar'] img,
+    [class*='avatarDecoration'],
+    [class*='guildIcon'],
+    [class*='icon'] img,
+    svg foreignObject
+) {
+    border-radius: var(--radius-lg) !important;
+    mask: none !important;
+    -webkit-mask: none !important;
 }
 
-/* Invite button inside call box */
-.buttonColor__7b3e8 {
-    color: rgba(var(--gruv-dark-text-primary));
+/* Preserve small status dots and circular icon glyphs where the shape carries meaning. */
+:where([class*='status'], [class*='lowerBadge'], [class*='upperBadge']) {
+    border-radius: 0 !important;
 }
 
-.theme-dark .button_e131a9.buttonColor_e131a9.buttonActive_e131a9 {
-    background-color: rgba(var(--gruv-dark-button-positive-default), 0.1);
-}
-.theme-dark .button_e131a9.buttonColor_e131a9.buttonActive_e131a9:hover {
-    background-color: rgba(var(--gruv-dark-button-positive-default), 0.2);
+/* color options */
+:root {
+    --colors: on; /* off: discord default colors, on: midnight custom colors */
+
+    /* Gruvbox Material Dark Hard reference palette.
+     * Backgrounds: bg_dim #141617, bg0 #1d2021, bg1/bg2 #282828,
+     * bg3/bg4 #3c3836, bg5 #504945. Foregrounds: fg0 #d4be98,
+     * fg1 #ddc7a1, grey0 #7c6f64, grey1 #928374, grey2 #a89984.
+     */
+
+    /* text colors */
+    --text-0: #141617; /* text on colored elements */
+    --text-1: #ddc7a1; /* bright text on colored elements */
+    --text-2: #d4be98; /* headings and important text */
+    --text-3: #d4be98; /* normal text */
+    --text-4: #a89984; /* icon buttons and channels */
+    --text-5: #7c6f64; /* muted channels/chats and timestamps */
+
+    /* background and dark colors */
+    --bg-1: #32302f; /* dark buttons when clicked */
+    --bg-2: #282828; /* dark buttons */
+    --bg-3: #1d2021; /* spacing, secondary elements */
+    --bg-4: #141617; /* main background color */
+    --hover: color-mix(
+        in srgb,
+        #282828 48%,
+        transparent
+    ); /* channels and buttons when hovered */
+    --active: color-mix(
+        in srgb,
+        #32302f 62%,
+        transparent
+    ); /* channels and buttons when clicked or selected */
+    --active-2: color-mix(
+        in srgb,
+        #3c3836 70%,
+        transparent
+    ); /* extra state for transparent buttons */
+    --message-hover: color-mix(
+        in srgb,
+        #1d2021 72%,
+        transparent
+    ); /* messages when hovered */
+
+    /* accent colors */
+    --accent-1: var(--blue-1); /* links and other accent text */
+    --accent-2: var(--blue-2); /* small accent elements */
+    --accent-3: var(--blue-3); /* accent buttons */
+    --accent-4: var(--blue-4); /* accent buttons when hovered */
+    --accent-5: var(--blue-5); /* accent buttons when clicked */
+    --accent-new: var(
+        --orange-2
+    ); /* stuff that's normally red like mute/deafen buttons */
+    --mention: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--yellow-2), transparent 88%) 40%,
+        transparent
+    ); /* background of messages that mention you */
+    --mention-hover: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--yellow-2), transparent 82%) 40%,
+        transparent
+    ); /* background of messages that mention you when hovered */
+    --reply: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--blue-2), transparent 90%) 40%,
+        transparent
+    ); /* background of messages that reply to you */
+    --reply-hover: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--blue-2), transparent 84%) 40%,
+        transparent
+    ); /* background of messages that reply to you when hovered */
+
+    /* status indicator colors */
+    --online: var(--green-2); /* change to #43a25a for default */
+    --dnd: var(--red-2); /* change to #d83a42 for default */
+    --idle: var(--yellow-2); /* change to #ca9654 for default */
+    --streaming: var(--purple-2); /* change to #593695 for default */
+    --offline: var(--grey-1); /* change to #83838b for default offline color */
+
+    /* border colors */
+    --border-light: color-mix(
+        in srgb,
+        #282828 55%,
+        transparent
+    ); /* general light border color */
+    --border: color-mix(
+        in srgb,
+        #3c3836 45%,
+        transparent
+    ); /* general normal border color */
+    --border-hover: color-mix(
+        in srgb,
+        #504945 55%,
+        transparent
+    ); /* border color of panels when hovered */
+    --button-border: color-mix(
+        in srgb,
+        #504945 35%,
+        transparent
+    ); /* neutral border color of buttons */
+
+    /* base colors */
+    --red-1: #f07f78;
+    --red-2: #ea6962;
+    --red-3: #ea6962;
+    --red-4: #dd5f58;
+    --red-5: #cf5851;
+
+    --orange-1: #eca06a;
+    --orange-2: #e78a4e;
+    --orange-3: #e78a4e;
+    --orange-4: #db7f45;
+    --orange-5: #cf743d;
+
+    --green-1: #b4bf75;
+    --green-2: #a9b665;
+    --green-3: #a9b665;
+    --green-4: #9da95d;
+    --green-5: #929d56;
+
+    --blue-1: #8bb9af;
+    --blue-2: #7daea3;
+    --blue-3: #7daea3;
+    --blue-4: #719f95;
+    --blue-5: #679188;
+
+    --aqua-1: #97bf91;
+    --aqua-2: #89b482;
+    --aqua-3: #89b482;
+    --aqua-4: #7da677;
+    --aqua-5: #72976d;
+
+    --yellow-1: #dfb66f;
+    --yellow-2: #d8a657;
+    --yellow-3: #d8a657;
+    --yellow-4: #ca994f;
+    --yellow-5: #bd8d48;
+
+    --purple-1: #d99aac;
+    --purple-2: #d3869b;
+    --purple-3: #d3869b;
+    --purple-4: #c77b90;
+    --purple-5: #bb7185;
+
+    --grey-0: #7c6f64;
+    --grey-1: #928374;
+    --grey-2: #a89984;
 }
 
-/* Input / Output Volume slider (context menu) */
-:where(.visual-refresh) .mini_a562c8 .grabber_a562c8,
-:where(.visual-refresh) .slider_a562c8 .grabber_a562c8 {
-    background-color: rgba(var(--gruv-dark-text-primary));
+/* Force perfectly square 90-degree corners across Discord/Vesktop. */
+*,
+*::before,
+*::after,
+svg,
+svg *,
+foreignObject,
+[style*='border-radius'] {
+    border-radius: 0 !important;
 }
 
-[class*='notches_'] {
-    background-color: rgba(var(--gruv-dark-bg3));
-}
-
-[class^='control_'] [class*='checked_'],
-#vc-spotify-player [class*='barFill_'] {
-    background-color: rgba(var(--gruv-dark-accent-hover), 0.8) !important;
-}
-
-.slider__87bf1 > rect {
-    fill: rgba(var(--gruv-dark-text-hard));
-}
-.slider__87bf1 svg > path {
-    fill: rgba(var(--gruv-dark-bg));
-}
-.container__87bf1 {
-    background-color: rgba(var(--gruv-dark-bg2)) !important;
-}
-.checked__87bf1 {
-    background-color: rgba(var(--gruv-dark-yellow-dark)) !important;
-}
-
-/* "Share your screen" button */
-.theme-dark
-    [class*='experimentButton_'][class*='buttonColor_'][class*='buttonActive_'] {
-    background-color: rgba(var(--gruv-dark-green-dark), 0.2);
-    border: 1px solid rgba(var(--gruv-dark-green-dark), 0.25);
-}
-.theme-dark
-    [class*='experimentButton_'][class*='buttonColor_'][class*='buttonActive_']:hover {
-    background-color: rgba(var(--gruv-dark-green-dark), 0.4);
-    border: 1px solid rgba(var(--gruv-dark-green-dark), 0.3);
-}
-
-/* call container bg */
-[class^='callContainer'],
-[class^='callContainer'] [class^='scroller_'] {
-    background-color: rgba(var(--gruv-dark-bg-hard));
-}
-/* Room preview animation */
-.gradientBackground__11664 {
-    background: rgba(var(--gruv-dark-bg)) !important;
-}
-.backgroundDark__11664 {
-    background: rgba(var(--gruv-dark-bg)) !important;
-}
-.foregroundRing__11664 {
-    background: rgba(var(--gruv-dark-accent-hover), 0.3) !important;
-}
-.foregroundBase__11664 {
-    background: rgba(var(--gruv-dark-accent-hover), 1) !important;
-}
-
-/* Online statuses */
-[mask^='url(#svg-mask-status-online'] {
-    fill: rgba(var(--gruv-dark-status-online));
-}
-
-[mask^='url(#svg-mask-status-dnd'] {
-    fill: rgba(var(--gruv-dark-status-dnd));
-}
-
-[mask^='url(#svg-mask-status-idle'] {
-    fill: var(--gruv-dark-status-idle);
-}
-
-[mask^='url(#svg-mask-status-offline'] {
-    fill: rgba(var(--gruv-dark-status-offline));
-}
-
-[class^='avatarWrapper_'] {
-    [aria-label*='online' i] svg > svg > rect {
-        fill: rgba(var(--gruv-dark-status-online)) !important;
-    }
-}
-[class^='avatarWrapper_'] {
-    [aria-label*='idle' i] svg > svg > rect {
-        fill: rgba(var(--gruv-dark-status-idle)) !important;
-    }
-}
-
-[class^='avatarWrapper_'] {
-    [aria-label*='dnd' i] svg > svg > rect {
-        fill: rgba(var(--gruv-dark-status-dnd)) !important;
-    }
-}
-
-[class^='avatarWrapper_'] {
-    [aria-label*='invisible' i] svg > svg > rect {
-        fill: rgba(var(--gruv-dark-status-offline)) !important;
-    }
-}
-
-rect[fill='#43a25a'] {
-    fill: var(--status-online);
-}
-
-rect[fill='#ca9654'] {
-    fill: var(--status-idle);
-}
-
-rect[fill='#d83a42'] {
-    fill: var(--status-dnd);
-}
-
-rect[fill='#82838b'] {
-    fill: var(--status-offline);
-}
-
-div.status_a423bd {
-    background-color: var(--status-online) !important;
-}
-
-/* Screenshare icon */
-.icon_c9d15c > path {
-    fill: rgba(var(--gruv-dark-accent));
-}
-
-[class^='callContainer'] [class^='root'] {
-    background-color: rgba(var(--gruv-dark-bg-hard)) !important;
-}
-
-.flex__7c0ba .lineClamp1__4bd52 {
-    color: rgba(var(--gruv-dark-text-hard)) !important;
-}
-
-/* Vesktop plugins / themes */
-.vc-addon-card {
-    border: 1px solid rgba(var(--gruv-dark-border-default));
-}
-
-/* Use solid background for banners in the "Discover" category */
-.theme-dark .gradientOverlay_e9ef78,
-.theme-dark .bannerGradient__955a3 {
-    background-color: rgba(var(--gruv-dark-bg));
-    border-bottom: 1px solid rgba(var(--gruv-dark-border-hover));
-}
-
-/* Share your screen / Stop stream / change windows / ets bototm button inside call window */
-[class^='colorable_'][class*='greenGlow_'] {
-    background-color: rgba(var(--gruv-dark-green-dark), 0.2);
-}
-[class^='colorable_'][class*='greenGlow_']:hover,
-[class^='colorable_'][class*='greenGlow_'][class*='popoutOpen_'] {
-    background-color: rgba(var(--gruv-dark-green-dark), 0.4);
-}
-
-/* Add right border for left section */
-.visual-refresh .sidebarList_c48ade {
-    border-right: 1px solid rgba(var(--gruv-dark-border-default));
-}
-
-/* N new messages */
-.newMessagesBar__0f481 {
-    background-color: rgba(var(--gruv-dark-bg-soft));
-    color: rgba(var(--gruv-dark-text-primary));
-}
-.visual-refresh .barButtonAlt__0f481:hover {
-    background-color: transparent;
-}
-
-/* Open voice button */
-/* .custom-profile-theme.theme-dark .themeColor_fb7f94.secondary_fb7f94 { */
-/* 	background-color: rgba(var(--gruv-dark-button-alt-default)) */
-/* } */
-/* .custom-profile-theme.theme-dark .themeColor_fb7f94.secondary_fb7f94:hover { */
-/* 	background-color: rgba(var(--gruv-dark-button-alt-hover)) */
-/* } */
-.custom-profile-theme.theme-dark [class*='themeColor' i][class*='secondary' i] {
-    background-color: rgba(var(--gruv-dark-button-alt-default));
-}
-.custom-profile-theme.theme-dark
-    [class*='themeColor' i][class*='secondary' i]:hover {
-    background-color: rgba(var(--gruv-dark-button-alt-hover));
-}
-
-.visual-refresh .section__00943 {
-    background-color: rgba(var(--gruv-dark-bg-hard));
-}
-
-:where(.visual-refresh) .lookFilled__201d5.colorPrimary__201d5,
-:where(.visual-refresh) .medium_a45028 .inner_a45028 {
-    background-color: rgba(var(--gruv-dark-bg-hard));
-}
-
-.menuOverlay_af7fb7,
-.card__39ec2 {
-    background-color: rgba(var(--gruv-dark-bg-hard));
-}
-
-/* Background tweaks to fix Discord's inconsistent styling */
-
-.connection_c7f964,
-.connectContainer_c7f964,
-.appDetailsContainer__50a54 {
-    background-color: rgba(var(--gruv-dark-bg-soft));
-    border: 1px solid rgba(var(--gruv-dark-border-default));
-}
-
-.background__1fed1,
-.background__1fed1 > .fieldList__1fed1 {
-    background-color: var(--user-profile-overlay-background);
-}
-
-.badgeList__1fed1 {
-    background-color: transparent;
-}
-
-/* Hovering over gifs would cause them to go blank  */
-.result__2dc39:after {
-    content: normal;
-}
-
-/* Contrast for some action buttons was too high, so.. */
-/* To see changes: Settings > Authorized Apps */
-
-[class^='actionMenuButton_'] {
-    background-color: rgba(var(--gruv-dark-bg-soft));
-    border: 1px solid rgba(var(--gruv-dark-border-default));
-    border-radius: 12px;
-}
-[class^='actionMenuButton_']:hover {
-    background-color: rgba(var(--gruv-dark-bg));
-    border: 1px solid rgba(var(--gruv-dark-border-hover));
-}
-
-.visual-refresh .searchBar__35e86 {
-    border: none !important;
-}
-
-/* Add border to account overview */
-/* Settings > My Account */
-[class^='accountProfileCard__'] {
-    border: 1px solid rgba(var(--gruv-dark-border-default));
-}
-
-[class^='accountProfileCard__'] {
-    box-shadow: 0 0 5px black !important;
-}
-
-[class^='accountProfileCard__']:hover {
-    box-shadow: 0 0 10px black !important;
-}
-
-.visual-refresh [class^='box_'],
-[class^='appDetailsContainer'],
-[class^='connectionOptionsWrapper'] {
-    background-color: var(--background-base-low) !important;
-}
-
-/* Make all titlebars the same */
-.visual-refresh .title_f75fb {
-    background-color: rgba(var(--gruv-dark-bg-hard)) !important;
-}
-
-/* Remove bottom border for server title section */
-.visual-refresh [class^='header_'] {
-    border-bottom: none !important;
-}
-
-/* ==== Nuked elements ==== */
-
-/* Top to bottom */
-
-/* Quests banner */
-.wrapper__0d616 {
+/* Remove SVG avatar masks that force circular Discord shapes. */
+svg mask,
+svg defs mask,
+[class*='avatar'] svg mask,
+[class*='icon'] svg mask {
     display: none !important;
 }
 
-/* Keep the original server/home hover background, but make the icon readable. */
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_']:hover
-    [class*='childWrapper_'],
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_'][class*='selected_']
-    [class*='childWrapper_'] {
-    color: rgba(var(--gruv-dark-bg-hard)) !important;
-}
-
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_']:hover
-    [class*='childWrapper_']
-    svg,
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_'][class*='selected_']
-    [class*='childWrapper_']
-    svg,
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_']:hover
-    [class*='childWrapper_']
-    path,
-.visual-refresh
-    [class*='guilds_']
-    [class*='wrapper_'][class*='selected_']
-    [class*='childWrapper_']
-    path {
-    color: rgba(var(--gruv-dark-bg-hard)) !important;
-    fill: rgba(var(--gruv-dark-bg-hard)) !important;
+:where(
+    img,
+    video,
+    canvas,
+    picture,
+    [class*='avatar'],
+    [class*='icon'],
+    [class*='wrapper']
+) {
+    clip-path: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
 }
