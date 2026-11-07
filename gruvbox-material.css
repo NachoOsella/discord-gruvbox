@@ -2,7 +2,7 @@
  * @name gruvbox-material
  * @description Gruvbox Material Dark Hard for Discord, matched to a Quickshell desktop: square, flat, one green accent.
  * @author NachoOsella
- * @version 2.0.0
+ * @version 2.0.1
  * @source https://github.com/NachoOsella/discord-gruvbox
 */
 
@@ -72,9 +72,9 @@ body {
     --top-bar-title-position: off;
     --subtle-top-bar-title: off;
 
-    /* window controls */
-    --custom-window-controls: on;
-    --window-control-size: 14px;
+    /* window controls are hidden below, Hyprland manages the window */
+    --custom-window-controls: off;
+    --window-control-size: 0px;
 
     /* dms button */
     --custom-dms-icon: custom;
@@ -326,6 +326,17 @@ rect[mask*='svg-mask-status-offline'],
 rect[mask*='svg-mask-status-invisible'] {
     fill: var(--gm-bg0) !important;
     stroke: var(--offline);
+}
+
+/* No window controls, including their divider and the ones on popout windows. */
+.winButtons_3zSH5d,
+.winButton_gnMEnp {
+    display: none !important;
+}
+
+/* midnight reserves room for the controls whenever they are in the DOM, so use its layout without them. */
+.base_pog62O:has(> .bar_3zSH5d > .trailing_3zSH5d > .winButtons_3zSH5d) {
+    --top-bar-right-margin: calc(32px * var(--button-count) + var(--button-count) * var(--space-xs));
 }
 
 /* No elevation anywhere. */
