@@ -2,7 +2,7 @@
  * @name gruvbox-material
  * @description Gruvbox Material Dark Hard for Discord, matched to a Quickshell desktop: square, flat, one green accent.
  * @author NachoOsella
- * @version 2.0.1
+ * @version 2.0.2
  * @source https://github.com/NachoOsella/discord-gruvbox
 */
 
@@ -58,7 +58,6 @@ body {
     --radius-md: 0px;
     --radius-lg: 0px;
     --radius-xl: 0px;
-    --custom-app-top-bar-height: 28px;
 
     /* animation, Quickshell's 120ms fast step */
     --animations: on;
